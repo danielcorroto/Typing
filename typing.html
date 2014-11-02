@@ -5,6 +5,7 @@
 		<title>Typing</title>
 
 		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
 		
 		<link rel="stylesheet" href="css/main.css" />
@@ -23,11 +24,23 @@
 		</header>
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-5">
+				<div class="col-lg-4">
 					<span class="label label-success">Score</span> <span id="count">0</span>
 				</div>
-				<div class="col-lg-5">
+				<div class="col-lg-4">
 					<span class="label label-warning">Time</span> <span id="timer">0</span>
+				</div>
+				<div class="col-lg-2">
+					<div class="dropdown">
+						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+							Language
+							<span class="caret"></span>
+						</button>
+						<ul id="language" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+							<li role="presentation"><a role="menuitem" tabindex="0" href="#">Castellano</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="1" href="#">English</a></li>
+						</ul>
+					</div>
 				</div>
 				<div class="col-lg-2">
 					<button class="btn btn-danger" id="reset">Reset</button>

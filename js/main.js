@@ -4,6 +4,7 @@ score3 = ["Á","É","Í","Ó","Ú","ü"];
 // TIMER
 var timer;
 
+var jsonPath = "json/texts.es.json";
 var time;
 var started;
 var count;
@@ -39,7 +40,7 @@ function startTimer() {
 
 function loadText() {
 	// LOAD DATA
-	$.getJSON("json/texts.es.json", function(data) {
+	$.getJSON(jsonPath, function(data) {
 		var selected = Math.floor((Math.random() * data.texts.length));
 		$("#author").text(data.texts[selected].author)
 		$("#title").text(data.texts[selected].title)
@@ -60,6 +61,17 @@ function getScore(written) {
 		}
 	}
 	return result;
+}
+
+function setLanguage(lang) {
+	switch(lang) {
+		case "0":
+			jsonPath = "json/texts.es.json";
+			break;
+		case "1":
+			jsonPath = "json/texts.en.json";
+			break;
+	}
 }
 
 $(document).ready(function() {
@@ -101,4 +113,11 @@ $(document).ready(function() {
 		loadText();
 		$("#write").focus();
 	}
+	
+	// LANGUAGE
+	$("#language li a").click(function() {
+		var lang = $(this).attr("tabindex");
+		setLanguage(lang);
+		reset();
+	});
 });
