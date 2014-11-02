@@ -4,39 +4,36 @@
 		<meta charset="UTF-8"/>
 		<title>Typing</title>
 
-		<script type="javascript" src="js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		
+		<link rel="stylesheet" href="css/main.css" />
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
-
-		<style>
-			textarea {
-				resize: none;
-				width: 100%;
-				height: 300px;
-			}
-		</style>
 	</head>
 	<body>
 		<header>
 			<div class="container">
-			<div class="jumbotron">
-				<div class="row">
-					<h1>Typing</h1>
-					<p><small>Cuenta las pulsaciones por minuto que eres capaz de teclear</small></p>
-				</div>
-				<div class="row">
-					<div class="col-lg-5">
-						<span class="label label-success">Score</span> <span id="count">0</span>
-					</div>
-					<div class="col-lg-5">
-						<span class="label label-warning">Time</span> <span id="timer">0</span>
-					</div>
-					<div class="col-lg-2">
-						<button class="btn btn-danger" id="reset">Reset</button>
+				<div class="page-header">
+					<div class="row">
+						<h1>Typing</h1>
+						<p><small>Cuenta las pulsaciones por minuto que eres capaz de teclear</small></p>
 					</div>
 				</div>
-			</div>
 			</div>
 		</header>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5">
+					<span class="label label-success">Score</span> <span id="count">0</span>
+				</div>
+				<div class="col-lg-5">
+					<span class="label label-warning">Time</span> <span id="timer">0</span>
+				</div>
+				<div class="col-lg-2">
+					<button class="btn btn-danger" id="reset">Reset</button>
+				</div>
+			</div>
+		</div>
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6">
@@ -44,11 +41,12 @@
 				</div>
 				<div class="col-lg-6">
 					<span id="author"></span>
-					<span id="book"></span>
+					<span id="title"></span>,
 					<span id="year"></span>
 					<span id="text"></span>
 				</div>
 			</div>
 		</div>
+		
 	</body>
 </html>
