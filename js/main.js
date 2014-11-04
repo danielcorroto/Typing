@@ -4,10 +4,50 @@ score3 = ["Á","É","Í","Ó","Ú","ü"];
 // TIMER
 var timer;
 
-var jsonPath = "json/texts.es.json";
+var jsonPath;
 var time;
 var started;
 var count;
+
+
+var lang = navigator.language || navigator.userLanguage;
+lang = lang.substr(0,2);
+setLanguage(lang);
+
+// TEXT & SCORE
+function loadText() {
+	$.getJSON(jsonPath, function(data) {
+		var selected = Math.floor((Math.random() * data.texts.length));
+		$("#author").text(data.texts[selected].author)
+		$("#title").text(data.texts[selected].title)
+		$("#year").text(data.texts[selected].year)
+		$("#text").text(data.texts[selected].text)
+	});
+}
+
+function setLanguage(lang) {
+	if (lang == "es") {
+		jsonPath = "json/texts.es.json";
+	} else {
+		jsonPath = "json/texts.en.json";
+	}
+}
+
+function getScore(written) {
+	var result = written.length;
+	for (i = 0; i < written.length; i++) {
+		var c = written.charCodeAt(i);
+		if (c>=97 && c<=122) {
+		} else if ((c>=65 && c<=90) || score2.indexOf(written[i]) > -1) {
+			result += 1;
+		} else if (score3.indexOf(written[i]) > -1) {
+			result += 2;
+		}
+	}
+	return result;
+}
+
+// TIMER
 function printTimer() {
 		if (time > 0) {
 			$("#timer").text(time);
@@ -36,42 +76,6 @@ function updateTimer() {
 }
 function startTimer() {
 	timer = setTimeout('updateTimer()', 1000);
-}
-
-function loadText() {
-	// LOAD DATA
-	$.getJSON(jsonPath, function(data) {
-		var selected = Math.floor((Math.random() * data.texts.length));
-		$("#author").text(data.texts[selected].author)
-		$("#title").text(data.texts[selected].title)
-		$("#year").text(data.texts[selected].year)
-		$("#text").text(data.texts[selected].text)
-	});
-}
-
-function getScore(written) {
-	var result = written.length;
-	for (i = 0; i < written.length; i++) {
-		var c = written.charCodeAt(i);
-		if (c>=97 && c<=122) {
-		} else if ((c>=65 && c<=90) || score2.indexOf(written[i]) > -1) {
-			result += 1;
-		} else if (score3.indexOf(written[i]) > -1) {
-			result += 2;
-		}
-	}
-	return result;
-}
-
-function setLanguage(lang) {
-	switch(lang) {
-		case "0":
-			jsonPath = "json/texts.es.json";
-			break;
-		case "1":
-			jsonPath = "json/texts.en.json";
-			break;
-	}
 }
 
 $(document).ready(function() {
@@ -116,7 +120,7 @@ $(document).ready(function() {
 	
 	// LANGUAGE
 	$("#language li a").click(function() {
-		var lang = $(this).attr("tabindex");
+		var lang = $(this).attr("lang");
 		setLanguage(lang);
 		reset();
 	});
